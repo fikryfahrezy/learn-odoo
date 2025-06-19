@@ -1,0 +1,28 @@
+services:
+  odoo:
+    image: 'odoo:18'
+    env_file: ./.env
+    volumes:
+      - './odoo-web-data:/var/lib/odoo'
+      - './odoo-tutorials:/mnt/extra-addons'
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - '-f'
+        - 'http://127.0.0.1:8069'
+      interval: 2s
+      timeout: 10s
+      retries: 30
+  postgresql:
+    image: 'postgres:16-alpine'
+    volumes:
+      - './postgresql-data:/var/lib/postgresql/data'
+    env_file: ./.env
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - 'pg_isready -U $${POSTGRES_USER} -d postgres'
+      interval: 5s
+      timeout: 20s
+      retries: 10

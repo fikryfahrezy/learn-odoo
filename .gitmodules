@@ -1,0 +1,3 @@
+[submodule "odoo-tutorials"]
+	path = odoo-tutorials
+	url = ../odoo-tutorials.git
