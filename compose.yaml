@@ -3,7 +3,7 @@ services:
     image: 'odoo:18'
     env_file: ./.env
     volumes:
-      - './odoo-web-data:/var/lib/odoo'
+      - 'odoo-web-data:/var/lib/odoo'
       - './odoo-tutorials:/mnt/extra-addons'
     healthcheck:
       test:
@@ -17,7 +17,7 @@ services:
   postgresql:
     image: 'postgres:16-alpine'
     volumes:
-      - './postgresql-data:/var/lib/postgresql/data'
+      - 'postgresql-data:/var/lib/postgresql/data'
     env_file: ./.env
     healthcheck:
       test:
